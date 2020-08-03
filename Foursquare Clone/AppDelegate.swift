@@ -7,14 +7,24 @@
 //
 
 import UIKit
+import Parse
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        ThemeManager.setup()
+        IQKeyboardManager.shared.enable = true
+        //Connect with Server
+        let parseConfiguration = ParseClientConfiguration { (ParseMutableClientConfiguration) in
+            ParseMutableClientConfiguration.applicationId = "9WmYuUQI0DYx7nWm0ggOpeFQXaoYi91Gmkb38UIJ"
+            ParseMutableClientConfiguration.clientKey = "Sofw9tD2YLIiH7o40mGKW1QcUDZrh3jzZzvw4rx9"
+            ParseMutableClientConfiguration.server = "https://parseapi.back4app.com/"
+        }
+        Parse.initialize(with: parseConfiguration)
         return true
     }
 
